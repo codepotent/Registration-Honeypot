@@ -4,7 +4,7 @@
  * -----------------------------------------------------------------------------
  * Plugin Name: Registration Honeypot
  * Description: Add a honeypot input to the ClassicPress registration form to prevent spambots from creating accounts.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Requires CP: 1.0
  * Requires PHP: 5.6
  * Author: Simone Fioravanti
@@ -54,7 +54,7 @@ function enqueue_login_style() {
 add_action('register_form', __NAMESPACE__.'\append_honeypot_input');
 function append_honeypot_input() {
 	echo '<p class="register_additional">';
-	echo '<label for="register_additional">'.esc_html__('Leave this field empty.', 'registration-honeypot').'</label><br />';
+	echo '<label for="register_additional">'.esc_html__('Leave this field empty.', 'codepotent-registration-honeypot').'</label><br />';
 	echo '<input type="text" name="register_additional" id="register_additional" value="" autocomplete="off" /></label>';
 	echo '</p>';
 }
@@ -63,8 +63,8 @@ function append_honeypot_input() {
 add_action('register_post', __NAMESPACE__.'\check_honeypot_input', 0);
 add_action('login_form_register', __NAMESPACE__.'\check_honeypot_input', 0);
 function check_honeypot_input() {
-	if (empty($_POST['register_additional'])) {
+	if (empty($_POST['register_additional'])) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 		return;
 	}
-	wp_die(esc_html__('Automated registration is disabled.', 'registration-honeypot'));
+	wp_die(esc_html__('Automated registration is disabled.', 'codepotent-registration-honeypot'));
 }

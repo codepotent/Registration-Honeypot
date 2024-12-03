@@ -33,8 +33,6 @@ require_once(ABSPATH.'wp-admin/includes/plugin.php');
 
 // Ex: codepotent
 const VENDOR_PREFIX = 'codepotent';
-// Ex: Our company is cool!
-define(__NAMESPACE__.'\VENDOR_TAGLINE', esc_html__('', 'codepotent-registration-honeypot'));
 // Ex: plugin-folder-name
 const PLUGIN_SHORT_SLUG = 'registration-honeypot';
 // Ex: dashicons-whatever
@@ -58,7 +56,7 @@ const PLUGIN_FILEPATH = WP_PLUGIN_DIR.'/'.PLUGIN_IDENTIFIER;
 // Ex: vendor_plugin_name_settings
 const PLUGIN_SETTINGS_VAR = PLUGIN_PREFIX.'_settings';
 // Get plugin data from header file.
-$plugin = get_plugin_data(PLUGIN_FILEPATH, false, false);
+$plugin = get_plugin_data(PLUGIN_FILEPATH, false, false); //phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 // Ex: My Plugin Name
 define(__NAMESPACE__.'\PLUGIN_NAME', $plugin['Name']);
 // Ex: Some plugin description
